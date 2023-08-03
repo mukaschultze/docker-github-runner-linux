@@ -1,9 +1,9 @@
 ---
-version: '3.8'
+version: '3.9'
 
 services:
   runner:
-    image: pwd9000-github-runner-lin:latest
+    image: https://github.com/mukaschultze/docker-github-runner-linux.git
     build:
       context: .
       args:
