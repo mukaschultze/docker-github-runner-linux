@@ -1,14 +1,17 @@
----
 version: '3.9'
 
 services:
   runner:
-    image: https://github.com/mukaschultze/docker-github-runner-linux.git
     build:
-      context: .
+      context: https://github.com/mukaschultze/docker-github-runner-linux.git
       args:
         RUNNER_VERSION: '2.292.0'
+    restart: unless-stopped
     environment:
       GH_TOKEN: ${GH_TOKEN}
       GH_OWNER: ${GH_OWNER}
       GH_REPOSITORY: ${GH_REPOSITORY}
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: unless-stopped
